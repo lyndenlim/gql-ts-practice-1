@@ -3,3 +3,8 @@
     width: 100%;
     padding-bottom: 10px;
 }
+
+.coin-link {
+    text-decoration: none;
+    color: black;
+}

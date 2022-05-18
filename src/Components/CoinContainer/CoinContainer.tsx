@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import "./CoinContainer.css"
 
 export interface CoinData {
+    id: string;
     rank: string;
     name: string;
     symbol: string;
