@@ -1,10 +1,11 @@
 
-import CoinContainer from './Components/CoinContainer/CoinContainer';
+import TrendingContainer from './Components/TrendingContainer/TrendingContainer';
+import "./App.css"
 
 function App() {
   return (
     <div className="App">
-      <CoinContainer />
+      <TrendingContainer />
     </div>
   );
 }
