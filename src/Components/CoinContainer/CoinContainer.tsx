@@ -1,10 +1,10 @@
 import Coin from "../Coin/Coin"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import "./TrendingContainer.css"
+import "./CoinContainer.css"
 
 export interface CoinData {
-    rank: string; 
+    rank: string;
     name: string;
     symbol: string;
     priceUsd: string;
@@ -13,6 +13,7 @@ export interface CoinData {
 
 const CoinContainer: React.FC = () => {
     const [coinData, setCoinData] = useState<CoinData[]>([])
+    const [searchValue, setSearchValue] = useState<string>("")
 
     async function getCoinData(): Promise<void> {
         const data = await axios.get("https://api.coincap.io/v2/assets?limit=10")
@@ -24,9 +25,12 @@ const CoinContainer: React.FC = () => {
     }, [])
 
     return (
-        <div className="coin-container">
-            {coinData.map(coin => <Coin key={coin.rank} coin={coin} />)}
-        </div>
+        <>
+            <input onChange={e => setSearchValue(e.target.value)} value={searchValue} placeholder="Search for a coin" />
+            <div className="coin-container">
+                {coinData.filter(coin => coin.name.toLowerCase().includes(searchValue.toLowerCase()) || coin.symbol.toLowerCase().includes(searchValue.toLowerCase())).map(coin => <Coin key={coin.rank} coin={coin} />)}
+            </div>
+        </>
     )
 }
 

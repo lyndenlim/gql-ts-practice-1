@@ -1,4 +1,4 @@
-import { CoinData } from "../TrendingContainer/TrendingContainer"
+import { CoinData } from "../CoinContainer/CoinContainer"
 import "./Coin.css"
 interface Props {
     coin: CoinData
