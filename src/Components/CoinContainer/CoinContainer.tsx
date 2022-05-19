@@ -17,7 +17,7 @@ const CoinContainer: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>("")
 
     async function getCoinData(): Promise<void> {
-        const data = await axios.get("https://api.coincap.io/v2/assets?limit=10")
+        const data = await axios.get("https://api.coincap.io/v2/assets")
         setCoinData(data.data.data)
     }
 
@@ -29,7 +29,27 @@ const CoinContainer: React.FC = () => {
         <>
             <input onChange={e => setSearchValue(e.target.value)} value={searchValue} placeholder="Search for a coin" />
             <div className="coin-container">
-                {coinData.filter(coin => coin.name.toLowerCase().includes(searchValue.toLowerCase()) || coin.symbol.toLowerCase().includes(searchValue.toLowerCase())).map(coin => <Coin key={coin.rank} coin={coin} />)}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Rank
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Change (24hr)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {coinData.filter(coin => coin.name.toLowerCase().includes(searchValue.toLowerCase()) || coin.symbol.toLowerCase().includes(searchValue.toLowerCase())).map(coin => <Coin key={coin.rank} coin={coin} />)}
+                    </tbody>
+                </table>
             </div>
         </>
     )

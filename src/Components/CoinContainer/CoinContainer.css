@@ -1,4 +1,9 @@
 .coin-container {
     text-align: center;
-    width: 500px;
+    width: 80vw;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
 }

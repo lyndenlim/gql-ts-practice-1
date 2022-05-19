@@ -1,8 +1,4 @@
-canvas {
-    width: 100%;
-}
-
 .graph-container {
     height: fit-content;
-    width: 80vw;
+    width: 70vw;
 }

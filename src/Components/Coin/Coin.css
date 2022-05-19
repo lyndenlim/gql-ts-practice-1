@@ -1,10 +1,26 @@
-.single-coin {
-    border: 1px solid black;
-    width: 100%;
-    padding-bottom: 10px;
+.coin-row:hover {
+    cursor: pointer;
+    background-color: #F5F5F5;
 }
 
-.coin-link {
-    text-decoration: none;
-    color: black;
+tr {
+    border: solid thin;
+}
+
+
+.name-symbol-container {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.coin-image {
+    vertical-align: middle;
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+}
+
+.coin-symbol {
+    font-size: 12.5px;
 }
