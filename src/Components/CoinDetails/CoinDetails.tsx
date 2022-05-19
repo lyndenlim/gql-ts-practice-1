@@ -15,7 +15,7 @@ interface SingleCoin {
 let today = new Date().toLocaleDateString()
 
 const CoinDetails: React.FC = () => {
-    const { coin } = useParams()
+    const { coin } = useParams<string>()
     const [priceArray, setPriceArray] = useState<[]>([])
     const [timeArray, setTimeArray] = useState<[]>([])
     const [percentChange, setPercentageChange] = useState<string>("")
