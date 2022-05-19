@@ -20,14 +20,14 @@ const CoinDetails: React.FC = () => {
     const [timeArray, setTimeArray] = useState<[]>([])
     const [percentChange, setPercentageChange] = useState<string>("")
     const chartColor: string = parseFloat(percentChange) < 0 ? "#fedbd8" : "#e0fbef"
-    const poitnColor: string = parseFloat(percentChange) < 0 ? "#f44337" : "#51edad"
+    const pointColor: string = parseFloat(percentChange) < 0 ? "#f44337" : "#51edad"
 
     useEffect(() => {
         async function getSingleCoinData(): Promise<void> {
-            const data = await axios.all([axios.get(`https://api.coincap.io/v2/assets/${coin}/history?interval=h1`), axios.get(`https://api.coincap.io/v2/assets/${coin}`)])
+            const data = await axios.all([axios.get(`https://api.coincap.io/v2/assets/${coin}/history?interval=m15`), axios.get(`https://api.coincap.io/v2/assets/${coin}`)])
             console.log(data[1])
             setPriceArray(data[0].data.data.filter((item: SingleCoin) => new Date(item.date).toLocaleDateString("en-US", { timeZone: "America/New_York" }) === today).map((item: SingleCoin) => parseFloat(item.priceUsd).toFixed(2)))
-            setTimeArray(data[0].data.data.filter((item: SingleCoin) => new Date(item.date).toLocaleDateString("en-US", { timeZone: "America/New_York" }) === today).map((item: SingleCoin) => new Date(item.time).toLocaleTimeString("en-US", { timeZone: "America/New_York" })))
+            setTimeArray(data[0].data.data.filter((item: SingleCoin) => new Date(item.date).toLocaleDateString("en-US", { timeZone: "America/New_York" }) === today).map((item: SingleCoin) => new Date(item.time).toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit" },)))
             setPercentageChange(data[1].data.data.changePercent24Hr)
         }
 
@@ -44,12 +44,21 @@ const CoinDetails: React.FC = () => {
                     datasets: [{
                         data: priceArray,
                         backgroundColor: chartColor,
-                        borderColor: poitnColor,
-                        pointBackgroundColor: poitnColor,
+                        borderColor: pointColor,
+                        pointBackgroundColor: pointColor,
                         fill: true
                     }]
                 }}
                 options={{
+                    scales: {
+                        xAxis: {
+                            ticks: {
+                                maxRotation: 0,
+                                minRotation: 0,
+                                maxTicksLimit: 24
+                            }
+                        }
+                    },
                     responsive: true,
                     plugins: {
                         legend: {
@@ -57,9 +66,6 @@ const CoinDetails: React.FC = () => {
                         }
                     }
                 }}
-
-                height={600}
-                width={1000}
             />
         </div>
     )
