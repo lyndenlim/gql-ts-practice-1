@@ -2,6 +2,7 @@ import Coin from "../Coin/Coin"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import "./CoinContainer.css"
+import { Link } from "react-router-dom"
 
 export interface CoinData {
     id: string;
@@ -27,6 +28,7 @@ const CoinContainer: React.FC = () => {
 
     return (
         <>
+            <Link to="/cointesting">Coin Testing</Link>
             <input className="searchbar" onChange={e => setSearchValue(e.target.value)} value={searchValue} placeholder="Search for a coin" />
             <div className="coin-container">
                 <table>
