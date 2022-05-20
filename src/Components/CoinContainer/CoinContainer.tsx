@@ -27,7 +27,7 @@ const CoinContainer: React.FC = () => {
 
     return (
         <>
-            <input onChange={e => setSearchValue(e.target.value)} value={searchValue} placeholder="Search for a coin" />
+            <input className="searchbar" onChange={e => setSearchValue(e.target.value)} value={searchValue} placeholder="Search for a coin" />
             <div className="coin-container">
                 <table>
                     <thead>
