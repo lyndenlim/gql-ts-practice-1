@@ -1,18 +1,5 @@
-import { useState } from "react"
-import { useQuery, gql } from "@apollo/client"
 import NewCoin from "./NewCoin"
-
-export const GET_COIN = gql`
-{
-    coins {
-        id
-        description 
-        price
-    }
-}
-`;
-
-
+import useCoin from "../../hooks/useCoin"
 interface Coin {
     id: number
     description: string;
@@ -21,7 +8,7 @@ interface Coin {
 
 
 const CoinTesting: React.FC = () => {
-    const { loading, error, data } = useQuery(GET_COIN)
+    const { loading, error, data } = useCoin()
 
     if (loading) return <div>Loading...</div>
     if (error) return <div>Error {error.message}</div>

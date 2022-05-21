@@ -1,6 +1,6 @@
 import { useMutation, gql } from "@apollo/client"
 import { useState } from "react"
-import { GET_COIN } from "./CoinDisplay"
+import { GET_COIN } from "../../hooks/useCoin"
 
 const CREATE_COIN = gql`
     mutation CreateCoin($description: String!, $price: Int!){
