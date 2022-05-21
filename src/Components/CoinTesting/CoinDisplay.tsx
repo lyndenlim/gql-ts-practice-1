@@ -1,7 +1,8 @@
-
+import { useState } from "react"
 import { useQuery, gql } from "@apollo/client"
+import NewCoin from "./NewCoin"
 
-const GET_COIN = gql`
+export const GET_COIN = gql`
 {
     coins {
         id
@@ -11,11 +12,13 @@ const GET_COIN = gql`
 }
 `;
 
+
 interface Coin {
     id: number
     description: string;
-    price: number;
+    price: string;
 }
+
 
 const CoinTesting: React.FC = () => {
     const { loading, error, data } = useQuery(GET_COIN)
@@ -23,15 +26,16 @@ const CoinTesting: React.FC = () => {
     if (loading) return <div>Loading...</div>
     if (error) return <div>Error {error.message}</div>
 
-
     return (
         <div>
             {data.coins.map((coin: Coin) => (
                 <div key={coin.id}>
                     <p>{coin.description}</p>
                     <p>{coin.price}</p>
+
                 </div>
             ))}
+            <NewCoin />
         </div>
     )
 }
