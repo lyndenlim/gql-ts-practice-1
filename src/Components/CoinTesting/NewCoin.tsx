@@ -4,7 +4,8 @@ import { GET_COIN } from "../../hooks/useCoin"
 
 const CREATE_COIN = gql`
     mutation CreateCoin($description: String!, $price: Int!){
-        createCoin(input: {description: $description, price: $price }) {
+        createCoin(input: {description: $description, price: $price }) 
+        {
             coin {
                 id
                 description
@@ -33,7 +34,7 @@ const NewCoin: React.FC = () => {
 
     if (loading) return <div>Loading...</div>
     if (error) return <div>Error {error.message}</div>
-
+    
     return (
         <form onSubmit={e => createNewCoin(e)}>
             <input placeholder="Enter coin description" onChange={e => setnewCoinDescription(e.target.value)} value={newCoinDescription} />

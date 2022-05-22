@@ -19,9 +19,9 @@ const CoinTesting: React.FC = () => {
                 <div key={coin.id}>
                     <p>{coin.description}</p>
                     <p>{coin.price}</p>
-
                 </div>
             ))}
+            <br />
             <NewCoin />
         </div>
     )
